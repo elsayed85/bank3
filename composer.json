@@ -1,12 +1,19 @@
 {
-    "name": "elsayed85/bank3",
-    "description": "Laravel 5 Kuveyt Türk Sanal Pos",
-    "homepage": "https://github.com/farukcam/kuveytturk",
-    "autoload": {
-      "psr-4": {
-        "elsayed85\\bank3\\": "src/"
-      }
-    },
-    "license": "MIT",
-    "minimum-stability": "dev"
+  "name": "elsayed85/bank3",
+  "description": "Laravel Package For Kuveyt Turk Bank Virtual POS Integration",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "elsayed",
+      "email": "elsayedkamal581999@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "elsayed85\\bank3\\": "src/"
+    }
+  },
+  "require": {}
 }
