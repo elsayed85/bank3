@@ -56,6 +56,7 @@ return [
 ### .env
 
 ```php
+// [fail] and [done] is a route in web.php
 KUVEYT_TURK_API_CUSTOMER_ID=123
 KUVEYT_TURK_API_MERCHANT_ID=27003
 KUVEYT_TURK_API_OKURL=done
@@ -78,4 +79,31 @@ public function index()
         ->setAmount(100)
         ->pay();
 }
+```
+
+### web.php
+
+```php
+
+// for fail request debugging
+Route::post('/fail', function (Request $request) {
+    if($request->AuthenticationResponse) {
+        $RequestContent = urldecode($request->AuthenticationResponse);
+        $data =  simplexml_load_string($RequestContent) or die("Error: Cannot create object");
+        dd($request , $RequestContent , $data);
+    }
+    return "failed!";
+});
+
+// for success request debugging
+Route::post('/done', function (Request $request) {
+    if($request->AuthenticationResponse) {
+        $RequestContent = urldecode($request->AuthenticationResponse);
+        $data =  simplexml_load_string($RequestContent) or die("Error: Cannot create object");
+        dd($request , $RequestContent , $data);
+    }
+    return "done!";
+});
+
+
 ```
