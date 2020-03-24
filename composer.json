@@ -2,6 +2,12 @@
   "name": "elsayed85/bank3",
   "description": "Laravel Package For Kuveyt Turk Bank Virtual POS Integration",
   "type": "library",
+  "keywords": [
+    "bank",
+    "Kuveyt",
+    "POS Integration",
+    "elsayed85"
+  ],
   "license": "MIT",
   "authors": [
     {
@@ -17,7 +23,7 @@
   "require": {},
   "extra": {
     "branch-alias": {
-        "dev-master": "6.2-dev"
+      "dev-master": "6.2-dev"
     }
-}
+  }
 }
