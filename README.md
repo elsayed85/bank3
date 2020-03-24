@@ -1,11 +1,11 @@
-# Laravel 5 Kuveyt Turk Sanal Pos
+# Laravel 7 Kuveyt Turk
 
-Komut satırından bu kodu çalıştırınız:
 ```
-composer require farukcam/kuveytturk
+composer require elsayed85/bank3
 ```
 
-```config/app.php``` dosyasına aşağıda bulunan satırları ekliyoruz.
+`config/app.php`
+
 ```php
 return [
     // ...
@@ -13,7 +13,7 @@ return [
     'providers' => [
         // ...
 
-        farukcam\Kuveytturk\KuveytturkServiceProvider::class
+        elsayed85\bank3\TurkeyBankServiceProvider::class
     ],
 
     // ...
@@ -21,45 +21,55 @@ return [
     'aliases' => [
         // ...
 
-        'Kuveytturk'    => farukcam\Kuveytturk\Facades\Kuveytturk::class
+        'TurkeyBank'    => elsayed85\bank3\Facades\TurkeyBank::class
     ],
 );
 ```
-# Ayarlar
+
+# publishing
 
 ```code
 php artisan vendor:publish
 ```
-komutunu kullanarak ``` config/kuveytturk.php``` dosyasını yayınlıyoruz.
 
-### kuveytturk.php
+`config/TurkeyBank.php`
+
+### TurkeyBank.php
 
 ```php
 return [
     "Type"                => "Sale",
     "APIVersion"          => "1.0.0",
     "ApiUrl"              => "https://boa.kuveytturk.com.tr/sanalposservice/Home/ThreeDModelPayGate", // Test API url : https://boatest.kuveytturk.com.tr/boa.virtualpos.services/Home/ThreeDModelPayGate
-    "CustomerId"          => "Müşteri Numarası", // Test Müşteri Numarası : 400235
+    "CustomerId"          => "400235", // Test Müşteri Numarası : 400235
     "CurrencyCode"        => "0949", // Para birimi TL 0949
-    "MerchantId"          => "Mağaza Kodu", // Test Magaza Kodu : 496
-    "OkUrl"               => "Basarili sonuç alinirsa, yönledirelecek sayfa",
-    "FailUrl"             => "Basarisiz sonuç alinirsa, yönledirelecek sayfa",
-    "UserName"            => "Web Yönetim ekranlarindan olusturulan api rollü kullanici", // Test API Kullanıcısı : apiuser1
-    "Password"            => "Web Yönetim ekranlarindan olusturulan api rollü kullanici sifresi",  // Test API Kullanıcı Şifresi : Api123
+    "MerchantId"          => "496", // Test Magaza Kodu : 496
+    "OkUrl"               => env('KUVEYT_TURK_API_OKURL', "done"),
+    "FailUrl"             => env('KUVEYT_TURK_API_FAILURL', "fail"),
+    "UserName"            => env('KUVEYT_TURK_API_USERNAME', "username"), // Test API Kullanıcısı : apiuser1
+    "Password"            => env('KUVEYT_TURK_API_PASSWORD', 'password'),  // Test API Kullanıcı Şifresi : Api123
     "TransactionSecurity" => "3" // 3d Secure = 3 , 3d'siz = 1
 ];
 
 ```
 
-Kullanıma hazır!
+### .env
 
-#Kullanımı
 ```php
-use Kuveytturk;
+KUVEYT_TURK_API_CUSTOMER_ID=123
+KUVEYT_TURK_API_MERCHANT_ID=27003
+KUVEYT_TURK_API_OKURL=done
+KUVEYT_TURK_API_FAILURL=fail
+KUVEYT_TURK_API_USERNAME=apiuser1
+KUVEYT_TURK_API_PASSWORD=Api123
+```
+
+```php
+use TurkeyBank;
 
 public function index()
 {
-    $kuveytturk = Kuveytturk::setName('Faruk Çam')
+    $TurkeyBank = TurkeyBank::setName('test test')
         ->setCardNumber(1234567891234567)
         ->setCardExpireDateMonth(02)
         ->setCardExpireDateYear(20)

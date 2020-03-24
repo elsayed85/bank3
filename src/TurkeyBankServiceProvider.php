@@ -1,18 +1,19 @@
 <?php
+
 namespace elsayed85\bank3;
 
 /**
- * Description of KuveytturkServiceProvider.php
+ * Description of TurkeyBankServiceProvider.php
  *
  * @author Faruk Çam <mail@farukix.com>
  * Copyright (c) 2018 | farukix.com
  */
 
-
+use elsayed85\bank3\Http\Base\TurkeyBank;
 use Illuminate\Support\ServiceProvider;
-use farukcam\Kuveytturk\Http\Base\Kuveytturk;
 
-class KuveytturkServiceProvider extends ServiceProvider {
+class TurkeyBankServiceProvider extends ServiceProvider
+{
 
 
     /**
@@ -23,7 +24,7 @@ class KuveytturkServiceProvider extends ServiceProvider {
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/config.php' => config_path('kuveytturk.php'),
+            __DIR__ . '/config/config.php' => config_path('TurkeyBank.php'),
         ]);
     }
 
@@ -34,11 +35,8 @@ class KuveytturkServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bind('kuveytturk', function ($app)
-        {
-            return new Kuveytturk;
+        $this->app->bind('TurkeyBank', function ($app) {
+            return new TurkeyBank;
         });
     }
-
-
 }

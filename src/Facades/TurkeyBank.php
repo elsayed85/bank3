@@ -11,10 +11,10 @@ namespace elsayed85\bank3\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Kuveytturk extends Facade {
+class TurkeyBank extends Facade {
 
     protected static function getFacadeAccessor()
     {
-        return 'kuveytturk';
+        return 'TurkeyBank';
     }
 }
